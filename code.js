@@ -30,15 +30,3 @@ function search(graph, currentNode, targetNode, visitedNodes = new Set(), path =
     path.pop();
     return null;
 }
-
-const graph = {
-    A: ['B', 'C'],
-    B: ['D', 'E'],
-    C: ['F'],
-    D: [],
-    E: [],
-    F: []
-};
-
-const result = depthFirstSearch(graph, 'A', 'F');
-console.log(result); // Output: Path to the target node, e.g., ['A', 'B', 'E', 'F']
