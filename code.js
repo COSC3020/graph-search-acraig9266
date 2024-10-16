@@ -1,23 +1,44 @@
-function depthFirstSearch(graph, currentNode, targetNode, visitedNodes = new Set(), path = []) {
+// Assuming graph is input as adjacency list
+
+function depthFirstSearch(graph, startNode, targetNode) {
+    const result = search(graph, startNode, targetNode);
+    if (result == null){
+        return [];
+    } else{
+        return result;
+    }
+}
+
+function search(graph, currentNode, targetNode, visitedNodes = new Set(), path = []) {
     visitedNodes.add(currentNode);
     path.push(currentNode);
     if (currentNode == targetNode) {
         return path;
     }
 
-    for (i = 0; i < graph[currentNode].length; i++) {
-        if (visitedNodes.has(graph[currentNode][i]) == false) {
-            const found = depthFirstSearch(graph, graph[currentNode][i], targetNode, visitedNodes, path);
-            if (found != null) {
-                return found;
+    const nextNodes = graph[currentNode] || [];
+
+    for (let i = 0; i < nextNodes.length; i++) {
+        if (visitedNodes.has(nextNodes[i]) == false) {
+            const result = search(graph, nextNodes[i], targetNode, visitedNodes, path);
+            if (result) {
+                return result;
             } 
         }
     }
 
     path.pop();
-    if (path.length != 0){
-        return path;
-    } else {
-        return null;
-    }
+    return null;
 }
+
+const graph = {
+    A: ['B', 'C'],
+    B: ['D', 'E'],
+    C: ['F'],
+    D: [],
+    E: [],
+    F: []
+};
+
+const result = depthFirstSearch(graph, 'A', 'F');
+console.log(result); // Output: Path to the target node, e.g., ['A', 'B', 'E', 'F']
