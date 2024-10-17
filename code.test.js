@@ -43,3 +43,6 @@ var graph = {
     F: []
 };
 assert(JSON.stringify(depthFirstSearch(graph, 'A', 'F')) == JSON.stringify(['A', 'C', 'F']) || JSON.stringify(depthFirstSearch(graph, 'A', 'F')) == JSON.stringify(['A', 'B', 'E', 'F']));
+
+var graph = { };
+assert(JSON.stringify(depthFirstSearch(graph, 'A', 'B')) == JSON.stringify(]));
